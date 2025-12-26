@@ -1,29 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
-  
-  <title>Frontend Mentor | Password generator app</title>
-</head>
-<body>
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/images/favicon-32x32.png"
+    />
 
-  Password Generator
+    <link rel="stylesheet" href="style.css" />
+    <title>PWG</title>
+  </head>
+  <body>
+    <main>
+      <h1 class="title text-preset-4 spacing-200">Password Generator</h1>
+      <div class="main-input spacing-200">
+        <input class="text-preset-2" type="text" placeholder="P4$5W0rD!" />
+        <img
+          class="copy-icon"
+          src="./assets/images/icon-copy.svg"
+          alt="copy-icon"
+        />
+      </div>
 
-  P4$5W0rD!
+      <div class="character-pick-container">
+        <div class="char-length-container">
+          <h2 class="text-preset-4">Character Length</h2>
+          <p class="length-of-char">0</p>
+        </div>
 
-  Character Length
+        <input class="char-range-input" type="range" min="0" max="10" />
 
-  Include Uppercase Letters
-  Include Lowercase Letters
-  Include Numbers
-  Include Symbols
+        <div class="choice-inputs-container">
+          <div class="uppercase">
+            <input type="checkbox" id="uppercase" name="uppercase" />
+            <label for="uppercase">Include Uppercase Letters</label>
+          </div>
 
-  Strength
+          <div class="lovercase">
+            <input type="checkbox" id="lovercase" name="lovercase" />
+            <label for="lovercase">Include Lovercase Letters</label>
+          </div>
 
-  Generate
+          <div class="number">
+            <input type="checkbox" id="number" name="number" />
+            <label for="number">Include Numbers</label>
+          </div>
 
-</body>
+          <div class="symbols">
+            <input type="checkbox" id="symbols" name="symbols" />
+            <label for="symbols">Include Symbols</label>
+          </div>
+        </div>
+
+        <div class="strength-container">
+          <h3>Strength</h3>
+          <img
+            class="strength-icon"
+            src="./assets/images/empty-strength.svg"
+            alt="strength-icon"
+          />
+        </div>
+      </div>
+
+      <div class="btn-container">
+        <button class="generate-btn" type="button">Generate</button>
+        <img
+          src="./assets/images/icon-arrow-right.svg"
+          alt="arrow-right-icon"
+        />
+      </div>
+    </main>
+    <script src="./script.js"></script>
+  </body>
 </html>
