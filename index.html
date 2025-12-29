@@ -18,7 +18,12 @@
     <main>
       <h1 class="title text-preset-4 spacing-200">Password Generator</h1>
       <div class="main-input spacing-200">
-        <input class="text-preset-2" type="text" placeholder="P4$5W0rD!" />
+        <input
+          id="pass-input"
+          class="text-preset-2"
+          type="text"
+          placeholder="P4$5W0rD!"
+        />
         <svg
           class="copy-icon"
           width="21"
@@ -51,9 +56,9 @@
           </div>
 
           <div class="lovercase spacing-200">
-            <input type="checkbox" id="lovercase" name="lovercase" />
+            <input type="checkbox" id="lowercase" name="lowercase" />
 
-            <label class="text-preset-4" for="lovercase"
+            <label class="text-preset-4" for="lowercase"
               >Include Lovercase Letters</label
             >
           </div>
@@ -74,6 +79,7 @@
         <div class="strength-container spacing-200">
           <h3 class="text-preset-4">Strength</h3>
           <img
+            id="strength-of-password"
             class="strength-icon"
             src="./assets/images/empty-strength.svg"
             alt="strength-icon"
