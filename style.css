@@ -29,6 +29,11 @@
 }
 
 body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 100vh;
   font-family: "JetBrains Mono";
   font-style: normal;
   font-size: 16px;
@@ -61,14 +66,35 @@ main {
   input {
     border: none;
     background-color: transparent;
-    color: var(--color-grey-700);
+    color: var(--color-white);
     padding: 1rem;
+  }
+
+  input::placeholder {
+    color: var(--color-grey-700);
+  }
+  input:focus {
+    outline: none;
   }
 
   .copy-icon {
     top: 16px;
     right: 16px;
     position: absolute;
+    cursor: pointer;
+    fill: var(--color-green-200);
+
+    &:hover {
+      fill: var(--color-white);
+    }
+  }
+
+  .copied {
+    position: absolute;
+    top: 1.3rem;
+    right: 3rem;
+    text-transform: uppercase;
+    color: var(--color-green-200);
   }
 }
 
@@ -132,6 +158,58 @@ main {
   }
 }
 
+.strength-container {
+  width: 100%;
+  height: 56px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--color-grey-850);
+  padding: 1rem;
+
+  h3 {
+    color: var(--color-grey-600);
+    text-transform: uppercase;
+  }
+}
+
+.btn-container {
+  position: relative;
+  width: 100%;
+
+  button {
+    width: 100%;
+    height: 56px;
+    background-color: var(--color-green-200);
+    border: none;
+    outline: none;
+    text-transform: uppercase;
+    color: var(--color-grey-800);
+    cursor: pointer;
+
+    &:hover {
+      background-color: #24232c;
+      color: var(--color-green-200);
+      border: 2px solid var(--color-green-200);
+    }
+  }
+
+  .arrow {
+    fill: #24232c;
+    transition: color 0.2s ease;
+  }
+
+  button:hover .arrow {
+    fill: var(--color-green-200);
+  }
+
+  svg {
+    position: absolute;
+    top: 1.35em;
+    right: 5.4em;
+    cursor: pointer;
+  }
+}
 .text-preset-1 {
   font-size: 2rem;
   line-height: 1.3125em;
@@ -154,9 +232,16 @@ main {
 }
 
 .spacing-200 {
-  margin-bottom: 16px;
+  margin-bottom: 1rem;
 }
 
+.spacing-300 {
+  margin-bottom: 2rem;
+}
+
+.hide-element {
+  display: none;
+}
 /* RANGE INPUT STYLE */
 input[type="range"] {
   width: 100%;
@@ -244,4 +329,40 @@ input[type="range"]:focus::-ms-fill-upper {
   input[type="range"] {
     margin: 0;
   }
+}
+
+input[type="range"]:hover::-webkit-slider-thumb {
+  background: #18171f;
+  border: 2px solid #a4ffaf;
+}
+
+input[type="range"]:hover::-moz-range-thumb {
+  background: #18171f;
+  border: 2px solid #a4ffaf;
+}
+
+input[type="range"] {
+  --fill: 0%;
+}
+
+/* WebKit (Chrome, Edge, Safari) */
+input[type="range"]::-webkit-slider-runnable-track {
+  background: linear-gradient(
+    to right,
+    #a4ffaf 0%,
+    #a4ffaf var(--fill),
+    #18171f var(--fill),
+    #18171f 100%
+  );
+}
+
+/* Firefox */
+input[type="range"]::-moz-range-track {
+  background: linear-gradient(
+    to right,
+    #a4ffaf 0%,
+    #a4ffaf var(--fill),
+    #18171f var(--fill),
+    #18171f 100%
+  );
 }
