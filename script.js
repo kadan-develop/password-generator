@@ -23,11 +23,9 @@ let options = {
 // length of character
 range.addEventListener("change", (e) => {
   lengthOfPassword = +e.target.value;
-
+  console.log(lengthOfPassword + " length selected");
   //checkboxes event
   checkBoxes.forEach((checkbox) => {
-    checkbox.checked = false;
-
     checkbox.addEventListener("change", (e) => {
       options[checkbox.id] = e.target.checked;
     });
@@ -49,8 +47,35 @@ range.addEventListener("change", (e) => {
     return arr;
   }
 
+  function getPasswordStrength(password) {
+    let score = 0;
+
+    // Length score
+    if (password.length >= 6) score += 1;
+    if (password.length >= 10) score += 1;
+    if (password.length >= 14) score += 1;
+
+    // Character checks
+    if (/[a-z]/.test(password)) score += 1;
+    if (/[A-Z]/.test(password)) score += 1;
+    if (/[0-9]/.test(password)) score += 1;
+    if (/[^A-Za-z0-9]/.test(password)) score += 1;
+
+    // Max score = 7
+
+    if (score <= 2) return "too-weak";
+    if (score <= 4) return "weak";
+    if (score <= 5) return "medium";
+    if (score <= 6) return "strong";
+    // return "Very Strong";
+  }
+
   // GENERATING PASSWORD
   function generatePassword(length, options) {
+    console.log(
+      `generating password of length ${length} with options:`,
+      options
+    );
     let charset = "";
     let password = [];
 
@@ -74,7 +99,9 @@ range.addEventListener("change", (e) => {
       password.push(randomChar(SYMBOLS));
     }
 
-    if (!charset.length) {
+    console.log(length);
+
+    if (!length) {
       throw new Error("Select at least one character type");
     }
 
@@ -95,9 +122,29 @@ range.addEventListener("change", (e) => {
   generateBtn.addEventListener("click", () => {
     const passwordFinal = generatePassword(lengthOfPassword, options);
 
-    console.log(passwordFinal);
+    input.value = passwordFinal;
+
+    const strength = getPasswordStrength(passwordFinal);
+
+    strengthOfPass.src = `./assets/images/${strength}.svg`;
+    strengthOfPass.style.width = "155px";
+
+    // reset values
     range.value = range.min || 0;
     updateFill(range);
+    options = {
+      uppercase: false,
+      lowercase: false,
+      number: false,
+      symbols: false,
+    };
+
+    // Uncheck all checkboxes visually
+    checkBoxes.forEach((checkbox) => {
+      checkbox.checked = false;
+    });
+
+    lengthOfPassword = null;
   });
 });
 
@@ -109,6 +156,8 @@ function updateFill(el) {
 
   const percent = ((val - min) / (max - min)) * 100;
   el.style.setProperty("--fill", `${percent}%`);
+
+  lengthOfPass.textContent = val;
 }
 
 // init
